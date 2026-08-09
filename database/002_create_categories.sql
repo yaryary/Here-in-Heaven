@@ -1,0 +1,11 @@
+CREATE TABLE categories (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    parent_category_id INTEGER REFERENCES categories (id) ON DELETE SET NULL,
+    slug VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT,
+    image_url TEXT,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

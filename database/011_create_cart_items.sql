@@ -1,0 +1,8 @@
+CREATE TABLE cart_items(
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    cart_id INTEGER NOT NULL REFERENCES cart(id) ON DELETE CASCADE,
+    product_variant_id INTEGER NOT NULL REFERENCES product_variants(id),
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
